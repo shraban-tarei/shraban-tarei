@@ -12,9 +12,15 @@ const app = express();
 
 const db = mysql.createConnection({
     host: process.env.DB_HOST,
+    port: process.env.DB_PORT || 4000,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME
+    database: process.env.DB_NAME,
+
+    // TiDB Cloud requires secure TLS connection
+    ssl: {
+        minVersion: "TLSv1.2"
+    }
 });
 
 
@@ -104,12 +110,12 @@ app.post("/submit", (req, res) => {
 // Start Website
 // ===============================
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
 
     console.log(
-        `🌐 Website running at http://localhost:${PORT}`
+        `🌐 Website running on port ${PORT}`
     );
 
 });
