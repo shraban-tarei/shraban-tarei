@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Friends Information</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Friends Information</h1>
+
+        <p class="subtitle">
+            Please enter your details
+        </p>
+
+        <form id="friendForm">
+
+            <label for="name">Name</label>
+
+            <input
+                type="text"
+                id="name"
+                placeholder="Enter your full name"
+                required
+            >
+
+
+            <label for="mobile">Mobile Number</label>
+
+            <input
+                type="tel"
+                id="mobile"
+                placeholder="Enter your mobile number"
+                required
+            >
+
+
+            <label for="email">Gmail</label>
+
+            <input
+                type="email"
+                id="email"
+                placeholder="Enter your Gmail address"
+                required
+            >
+
+
+            <label for="department">Department</label>
+
+            <select id="department" required>
+
+                <option value="">
+                    Select Department
+                </option>
+
+                <option value="Computer Science">
+                    Computer Science
+                </option>
+
+                <option value="Physics">
+                    Physics
+                </option>
+
+                <option value="Chemistry">
+                    Chemistry
+                </option>
+
+                <option value="Mathematics">
+                    Mathematics
+                </option>
+
+                <option value="Botany">
+                    Botany
+                </option>
+
+                <option value="Zoology">
+                    Zoology
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+
+            <button type="submit">
+                Submit Information
+            </button>
+
+        </form>
+
+
+        <div id="message"></div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
