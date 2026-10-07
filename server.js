@@ -17,7 +17,6 @@ const db = mysql.createConnection({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME,
 
-    // TiDB Cloud requires secure TLS connection
     ssl: {
         minVersion: "TLSv1.2"
     }
@@ -32,7 +31,9 @@ db.connect((err) => {
 
     if (err) {
         console.log("❌ MySQL connection failed");
-        console.log(err.message);
+        console.log("Error code:", err.code);
+        console.log("Error message:", err.message);
+        console.log("Error details:", err);
         return;
     }
 
@@ -85,10 +86,12 @@ app.post("/submit", (req, res) => {
             if (err) {
 
                 console.log("❌ Database error");
-                console.log(err.message);
+                console.log("Error code:", err.code);
+                console.log("Error message:", err.message);
 
                 return res.status(500).json({
-                    success: false
+                    success: false,
+                    message: err.message
                 });
 
             }
