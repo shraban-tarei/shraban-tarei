@@ -1,28 +1,24 @@
-require("dotenv").config();
-
 const express = require("express");
 const mysql = require("mysql2");
 
 const app = express();
 
 const db = mysql.createConnection({
-    host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT) || 4000,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    database: process.env.DB_NAME,
+    host: "gateway01.ap-northeast-1.prod.aws.tidbcloud.com",
+    port: 4000,
+    user: "Vz7E5j5jZoa7u5A.root",
+    password: "IJl19d1DZsthYHW9",
+    database: "friends_db",
 
     ssl: {
-        minVersion: "TLSv1.2",
-        rejectUnauthorized: false
+        minVersion: "TLSv1.2"
     }
 });
 
 db.connect((err) => {
     if (err) {
         console.log("❌ MySQL connection failed");
-        console.log("Error code:", err.code);
-        console.log("Error message:", err.message);
+        console.log(err.message);
         return;
     }
 
@@ -46,7 +42,7 @@ app.post("/submit", (req, res) => {
     db.query(
         sql,
         [name, mobile, email, department],
-        (err) => {
+        (err, result) => {
 
             if (err) {
                 console.log("❌ Database error");
